@@ -9,7 +9,6 @@ class List {
         const todo = new Task(task);
         this.todos.push(todo);
         console.log(this.todos);
-        console.log(todo.dateAdded);
         return null;
     }
 }
@@ -29,9 +28,14 @@ class Task {
             this.done = false;
         }
     }
+
+    get dueDate() {
+        return this._dueDate;
+    }
+
     set dueDate(dateInput) {
         if (isValid(dateInput)) {
-            let date = format(new Date(dateInput));
+            let date = format(new Date(dateInput), 'yyyy-MM-dd'); //no HH:mm on due dates
             this._dueDate = date;
         } else {
             console.log('Sorry thats invalid');
