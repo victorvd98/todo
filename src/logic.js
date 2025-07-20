@@ -41,6 +41,9 @@ class Task {
             console.log('Sorry thats invalid');
         }
     }
+    editTitle(newTitle) {
+        this.title = newTitle;
+    }
 }
 
 const list = new List();
