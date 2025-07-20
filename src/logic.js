@@ -46,4 +46,4 @@ class Task {
     }
 }
 
-const list = new List();
+export const list = new List();
