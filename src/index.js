@@ -4,8 +4,12 @@ import "./styles.css";
 //logic = handling tasks
 //DOM manipulation = updating the UI to reflect the logic
 
-import { list } from './logic.js';
+import { list, loadFromStorage } from './logic.js';
 import { renderTask } from './dom.js';
+
+//re-load and re-render the tasks from localStorage
+loadFromStorage();
+list.todos.forEach(renderTask); 
 
 const form = document.getElementById('task-form');
 const titleInput = document.getElementById('task-form-title');

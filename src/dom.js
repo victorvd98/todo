@@ -1,4 +1,4 @@
-import { list } from './logic.js';
+import { list, saveToStorage, loadFromStorage } from './logic.js';
 
 
 export function renderTask(task) { //you can do stuff simultaneously apparently
@@ -26,6 +26,7 @@ export function renderTask(task) { //you can do stuff simultaneously apparently
     checkbox.addEventListener('change', () => {
         task.toggleDone();
         taskDiv.classList.toggle('done', task.done); //boolean adds or removes the class based on value
+        saveToStorage();
     });
 
     //Delete Button
@@ -36,6 +37,7 @@ export function renderTask(task) { //you can do stuff simultaneously apparently
     deleteBtn.addEventListener('click', () => {
         list.todos = list.todos.filter(t => t !== task);
         taskDiv.remove(); // removes the task from the DOM
+        saveToStorage();
     });
 
     //Assembly of task card

@@ -8,7 +8,7 @@ class List {
     create(task) {
         const todo = new Task(task);
         this.todos.push(todo);
-        console.log(this.todos);
+        saveToStorage();
         return null;
     }
 }
@@ -46,4 +46,25 @@ class Task {
     }
 }
 
+//creation of the Task List
 export const list = new List();
+
+//localStorage - save
+export function saveToStorage() {
+  localStorage.setItem("todos", JSON.stringify(list.todos));
+}
+
+//localStorage - load
+export function loadFromStorage() {
+  const stored = JSON.parse(localStorage.getItem("todos"));
+  if (!stored) return;
+
+  stored.forEach(obj => {
+    const task = new Task(obj.title);
+    task.done = obj.done;
+    task._dueDate = obj._dueDate;
+    task.dateAdded = obj.dateAdded;
+    list.todos.push(task);
+  });
+}
+
