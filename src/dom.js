@@ -1,3 +1,6 @@
+import { list } from './logic.js';
+
+
 export function renderTask(task) { //you can do stuff simultaneously apparently
     const taskList = document.getElementById("task-list");
 
@@ -24,11 +27,22 @@ export function renderTask(task) { //you can do stuff simultaneously apparently
         task.toggleDone();
         taskDiv.classList.toggle('done', task.done); //boolean adds or removes the class based on value
     });
-    
+
+    //Delete Button
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = '🗑️';
+    deleteBtn.classList.add('delete-button');
+
+    deleteBtn.addEventListener('click', () => {
+        list.todos = list.todos.filter(t => t !== task);
+        taskDiv.remove(); // removes the task from the DOM
+    });
+
     //Assembly of task card
     taskDiv.appendChild(title);
     taskDiv.appendChild(due);
     taskDiv.appendChild(checkbox);
+    taskDiv.appendChild(deleteBtn);
     //Add task card to task list
     taskList.appendChild(taskDiv);
 }
