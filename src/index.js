@@ -32,5 +32,5 @@ form.addEventListener('submit', (e) => { //arrow function 'e' for event
     //clear the form
     form.reset();
 
-});
+}); 
 
