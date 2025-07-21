@@ -20,8 +20,11 @@ export function renderTask(task) { //you can do stuff simultaneously apparently
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.checked = task.done;
-    checkbox.disabled = true; //no idea wtfff
-
+    checkbox.addEventListener('change', () => {
+        task.toggleDone();
+        taskDiv.classList.toggle('done', task.done); //boolean adds or removes the class based on value
+    });
+    
     //Assembly of task card
     taskDiv.appendChild(title);
     taskDiv.appendChild(due);
